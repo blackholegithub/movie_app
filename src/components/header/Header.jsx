@@ -81,7 +81,7 @@ const Header = () => {
                     <li
                         className="menuItem"
                     >
-                        Hello
+                        Hello mobile version
                     </li>
                     <li
                         className="menuItem"
@@ -119,12 +119,6 @@ const Header = () => {
                         onClick={() => navigationHandler("top_rated")}
                     >
                         Top Rated
-                    </li>
-                    <li
-                        className="menuItem"
-                       
-                    >
-                        Log Out
                     </li>
 
                     <li className="menuItem">
