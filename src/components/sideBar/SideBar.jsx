@@ -58,6 +58,7 @@ const SideBar = () => {
       logOutAcc()
       dispatch(logout())
       setLogged(false)
+      navigation("/")
     }else{
       navigation("/auth/login")
     }
