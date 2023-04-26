@@ -55,10 +55,16 @@ const SideBar = () => {
 
   const handleUserStateManage =()=>{
     if(user){
-      logOutAcc()
-      dispatch(logout())
-      setLogged(false)
-      navigation("/")
+      setTimeout(()=>{
+        logOutAcc()
+        dispatch(logout())
+        setLogged(false)
+
+      },1200)
+      setTimeout(()=>{
+        window.location.reload()
+      },1300)
+      
     }else{
       navigation("/auth/login")
     }
