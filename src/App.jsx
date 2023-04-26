@@ -16,6 +16,12 @@ import PageNotFound from "./pages/404/PageNotFound";
 import SideBar from "./components/sideBar/SideBar";
 import SignUp from "./pages/signUp/SignUp";
 import LogIn from "./pages/logIn/LogIn";
+import { login } from "./store/authSlice";
+import { auth } from "./firebase";
+
+import {
+    signInWithEmailAndPassword,
+  } from 'firebase/auth';
 
 function App() {
     const dispatch = useDispatch();
@@ -24,6 +30,14 @@ function App() {
     useEffect(() => {
         fetchApiConfig();
         genresCall();
+
+        const RememberUser = localStorage.getItem("RememberUser")
+        const user = JSON.parse(RememberUser)
+        if(user){
+            dispatch(login(user.email))
+            signInWithEmailAndPassword(auth,user.email,user.password)
+
+        }
     }, []);
 
     useEffect(() => {

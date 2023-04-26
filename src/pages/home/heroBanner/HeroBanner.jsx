@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RiArrowLeftCircleLine, RiArrowRightCircleLine, RiStarHalfLine } from "react-icons/ri";
@@ -23,6 +23,8 @@ const HeroBanner = () => {
     const navigate = useNavigate();
     const { url } = useSelector((state) => state.home);
     const { data, loading } = useFetch("/movie/upcoming");
+
+    console.log("herobanner")
 
     useEffect(() => {
         const random = Math.floor(Math.random() * 20)
@@ -130,7 +132,7 @@ const HeroBanner = () => {
                                     )}
                                     </div>
                                 </div>
-                                <button onClick={handleWatchTrailer}> Watch Trailer
+                                <button className="buttonTrailer" onClick={handleWatchTrailer}> Watch Trailer
                                 </button>
                             </div>
                         </div>
@@ -157,4 +159,4 @@ const HeroBanner = () => {
     );
 };
 
-export default HeroBanner;
+export default HeroBanner;  

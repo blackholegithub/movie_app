@@ -89,7 +89,7 @@ const SideBar = () => {
               />
             </span>
             <span className="info">
-              <div className="name">{logged ? "Hello !" : "Admin" }</div>
+              <div className="nameInf">{logged ? "Hello !" : "Admin" }</div>
               <div className="profession">{logged ? user : "Web developer" }</div>
             </span>
           </div>

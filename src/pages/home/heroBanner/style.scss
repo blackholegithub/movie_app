@@ -203,11 +203,13 @@
       display: flex;
       flex-direction: column;
 
-      button {
+      .buttonTrailer {
         padding: 15px 25px;
         border: unset;
         border-radius: 15px;
         color: #212121;
+        width: 200px !important;
+        height: 100px !important;
         z-index: 1;
         background: #e8e8e8;
         position: relative;
@@ -219,7 +221,7 @@
         overflow: hidden;
       }
 
-      button::before {
+      .buttonTrailer::before {
         content: "";
         position: absolute;
         top: 0;
@@ -234,11 +236,11 @@
         transition: all 250ms;
       }
 
-      button:hover {
+      .buttonTrailer:hover {
         color: #e8e8e8;
       }
 
-      button:hover::before {
+      .buttonTrailer:hover::before {
         width: 100%;
       }
 

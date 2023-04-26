@@ -206,7 +206,7 @@ const SignUp = () => {
               <input type="password" value={passResetInput} required ref={passResetInputRef} onChange={(e) => handleInput(e.target, 'resetPass')} onFocus={() => handleFocus('resetPass')} onBlur={() => handleBlur('resetPass')} />
               <label htmlFor="" ref={passResetRef}>Reset password</label>
             </div>
-            {message ? <div className={`message ${colorMessage ? "blue" : ""}`}>The password does not match, please re-enter</div> : <></>}
+            {message ? <div className={`messageReset ${colorMessage ? "blue" : ""}`}>The password does not match, please re-enter</div> : <></>}
             <div className="forget">
               <label htmlFor="">
                 <input type="checkbox" required ref={checkboxRef} />

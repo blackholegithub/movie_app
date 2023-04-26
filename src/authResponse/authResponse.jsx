@@ -4,6 +4,7 @@ import {
     signOut,
     onAuthStateChanged,
     sendEmailVerification,
+    sendPasswordResetEmail,
   } from 'firebase/auth';
 
 import { auth,db } from '../firebase';
@@ -30,15 +31,37 @@ export function sendEmailCheck() {
   })
 }
 
+export function sendPassReset (email){
+  sendPasswordResetEmail(auth, email)
+  .then((data) => {
+    console.log(data)
+    alert("Email sent successfully, please check your email to set a new password")
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert("your email does not exist")
+  });
+}
 
-export function logIn(email, password,navigation,dispatchLogin) {
 
+export function logIn(email, password,navigation,dispatchLogin,setLoad , requiredRemember) {
+
+    setLoad(true)
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Đăng nhập thành công, trả về đối tượng người dùng (user object)
       const user = userCredential.user;
       console.log('User đã đăng nhập:', user);
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user))
+      if (requiredRemember ) {
+        const remeberUser = {
+          email: email,
+          password: password,
+        }
+        localStorage.setItem("RememberUser", JSON.stringify(remeberUser));
+      }
+      setLoad(false)
       dispatchLogin(user.email)
       navigation("/")
     })
@@ -48,12 +71,16 @@ export function logIn(email, password,navigation,dispatchLogin) {
       const errorMessage = error.message;
       alert("Đăng nhập thất bại, mật khẩu hoặc email không chính xác")
       console.log('Đăng nhập thất bại:', errorMessage);
+      setLoad(false)
+      handleRequire(false)
     });
 
   }
 
 export  function logOutAcc() {
-    return signOut(auth);
+    signOut(auth)
+    localStorage.removeItem("user")
+    localStorage.removeItem("RememberUser")
   }
 
 export const authListener = () => {
